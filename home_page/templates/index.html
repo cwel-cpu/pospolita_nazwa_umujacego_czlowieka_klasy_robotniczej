@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>school grades idc.</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="stopa">
+        <h1>school</h1>
+        <p>welcome {{name}}!</p>
+    </div>
+    <div id="kontener_glowny">
+        <h2>Add student</h2>
+        <form method="POST">
+            <input type="hidden" name="form_type" value="add_student">
+            Name: <input type="text" name="name" id="name" required>
+            Gender???: <input type="text" name="gender" id="gender" required>
+            Grade 1: <input type="number" name="grade" id="grade" required><br>
+            Grade 2: <input type="number" name="grade2" id="grade2" required><br>
+            Grade 3: <input type="number" name="grade3" id="grade3" required><br>
+            <button type="submit">Submit</button>
+        </form>
+        <hr>
+        
+        <h2>Search student</h2>
+        <form method="POST">
+            <input type="hidden" name="form_type" value="search_student">
+            
+            Name: <input type="text" name="sname" id="sname" required><br>
+            <button type="submit">Submit</button>
+        </form>
+        Grade: {% if grade is not none %}{{ grade }}{% endif %}
+        <hr>
+        
+        <h2>Statistic</h2>
+        number of students: {{ countstu }}<br><br>
+        average grade: <span id="average">{{ srednia }}</span><br><br>
+        number of excellent grades: {{ excellent }}<br><br>
+        number of fail grades: {{ fail }}<br><br>
+        highest grade: <span id="hig">{{ highest }}</span><br><br>
+        lowest grade: <span id="low">{{lowest }}</span>
+        <hr>
+        <h2>delete a student</h2>
+        <form method="post">
+            type a student id u want to delete: <input type="number" name="delete_id" id="delete_id" required>
+            <button type="submit">delete</button>
+        </form>
+    </div>
+    <script>
+        let wieksze = document.getElementById('hig');
+        let mniejsze = document.getElementById('low');
+        let srednia = document.getElementById('average')
+        if (parseFloat(wieksze.textContent) > 50) {
+            wieksze.style.color = 'green';
+        } else {
+            wieksze.style.color = 'red';
+        }
+        if (parseFloat(mniejsze.textContent) < 50) {
+            mniejsze.style.color = 'red';
+        } else {
+            mniejsze.style.color = 'green';
+        }
+        if (parseFloat(srednia.textContent) > 70) {
+            srednia.style.color = 'green';
+        } else if (parseFloat(srednia.textContent) > 50) {
+            srednia.style.color = 'orange'
+        } else if (parseFloat(srednia.textContent) < 50) {
+            srednia.style.color = 'red'
+        } else {
+            srednia.style.color = 'black'
+        }
+    </script>
+</body>
+</html>
