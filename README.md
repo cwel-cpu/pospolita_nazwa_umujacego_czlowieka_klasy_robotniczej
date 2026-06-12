@@ -1,0 +1,1 @@
+# pospolita_nazwa_umujacego_czlowieka_klasy_robotniczej
